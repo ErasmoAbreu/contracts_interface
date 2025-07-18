@@ -10,9 +10,6 @@ public class Installment {
 
     private static DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    public Installment(){
-    }
-
     public Installment(LocalDate date, double amount){
         this.date = date;
         this.amount = amount;
@@ -39,5 +36,4 @@ public class Installment {
         return date.format(fmt) + " - " + String.format("%.2f", amount);
     }
 
-    
 }

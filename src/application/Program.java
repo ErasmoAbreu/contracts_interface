@@ -1,6 +1,9 @@
 package application;
 
 import entities.Contract;
+import entities.Installment;
+import services.ContractService;
+import services.PaypalService;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -18,7 +21,7 @@ public class Program {
         System.out.println("Enter data contracts:");
         System.out.print("Number: ");
         int number = sc.nextInt();
-        System.out.print("Date (dd/MM/yyyy): )");
+        System.out.print("Date (dd/MM/yyyy): ");
         LocalDate date = LocalDate.parse(sc.next(), fmt);
         System.out.print("Contract value: ");
         double totaltValue = sc.nextDouble();
@@ -28,7 +31,13 @@ public class Program {
         System.out.print("Enter with number of installments: ");
         int numberofinstallments = sc.nextInt();
 
+        ContractService contractService = new ContractService(new PaypalService());
+        contractService.processContract(contract, numberofinstallments);
 
+        System.out.println("Installments: ");
+        for(Installment installments: contract.getInstallments()){
+            System.out.println(installments);
+        }
 
 
 
